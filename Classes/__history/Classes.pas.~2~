@@ -1,0 +1,36 @@
+unit Classes;
+
+interface
+
+uses
+  DateUtils,
+  System.SysUtils;
+
+type
+  TPessoa = class
+private
+    FNome: String;
+    FIdade: Integer;
+    FAltura: Double;
+    FPeso: Double;
+  { private declarations }
+public
+  property Nome: String read FNome write FNome;
+  property Idade: Integer read FIdade write FIdade;
+  property Altura: Double read FAltura write FAltura;
+  property Peso: Double read FPeso write FPeso;
+
+  constructor Create;
+end;
+
+
+implementation
+
+{ TPessoa }
+
+constructor TPessoa.Create;
+begin
+
+end;
+
+end.

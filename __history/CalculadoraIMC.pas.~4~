@@ -1,0 +1,167 @@
+unit CalculadoraIMC;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Classes;
+
+type
+  TfrmCalculadoraIMC = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    lblIdade: TLabel;
+    btnCalcular: TButton;
+    GroupBox1: TGroupBox;
+    btnEnvelhecer: TButton;
+    btnEngordar: TButton;
+    btnEmagrecer: TButton;
+    btnCrescer: TButton;
+    edtPeso: TEdit;
+    edtAltura: TEdit;
+    edtAnoNascimento: TEdit;
+    lblResultado: TLabel;
+    procedure btnCalcularClick(Sender: TObject);
+  private
+    procedure CalcularIMC;
+    procedure ClassificarIMC(const IMC: Double);
+    procedure CamposObrigatorios;
+    procedure ExibirIdade;
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCalculadoraIMC: TfrmCalculadoraIMC;
+
+implementation
+
+{$R *.dfm}
+
+{ TfrmCalculadoraIMC }
+
+procedure TfrmCalculadoraIMC.btnCalcularClick(Sender: TObject);
+begin
+      CamposObrigatorios;
+      CalcularIMC;
+      ExibirIdade;
+end;
+
+procedure TfrmCalculadoraIMC.CalcularIMC;
+var
+  Pessoa: TPessoa;
+  IMC:Double;
+  AnoNascimento: Integer;
+begin
+  try
+    try
+      Pessoa := nil;
+      Pessoa := TPessoa.Create;
+      Pessoa.Peso := StrToFloat(edtPeso.Text );
+      Pessoa.Altura := StrToInt(edtAltura.Text);
+      Pessoa.AnoNascimento := StrToInt(edtAnoNascimento.Text);
+
+      IMC := Pessoa.Peso / ((Pessoa.Altura /100) * (Pessoa.Altura	/100));
+      AnoNascimento := Pessoa.AnoNascimento;
+      ClassificarIMC(IMC);
+
+    except
+      on E: Exception do
+        ShowMessage(Format('Ocorreu um erro ao calcular o   IMC: $s' , [E.Message]))
+    end;
+
+  finally
+      if Assigned(Pessoa) then
+         FreeAndNil(Pessoa);
+  end;
+end;
+
+procedure TfrmCalculadoraIMC.CamposObrigatorios;
+var
+  I: Integer;
+begin
+  for i := 0 to ComponentCount - 1 do
+  begin
+    if (Components[i].Tag = 1) and (Components[i] is TEdit) then
+    begin
+      if Trim(TCustomEdit(Components[i]).Text).IsEmpty then
+      begin
+        ShowMessage('O deixou de preencher um campo obrigatório.');
+        TCustomEdit(Components[i]).SetFocus;
+        Exit;
+      end;
+    end;
+  end;
+end;
+
+procedure TfrmCalculadoraIMC.ClassificarIMC(const IMC: Double);
+const
+  CONST_RESULTADO: String = 'Seu IMC é %f, você está %s';
+begin
+   try
+      if IMC < 18.5 then
+      begin
+         lblResultado.Caption := Format(CONST_RESULTADO, [IMC, 'abaixo do peso']);
+         lblResultado.Font.Color := clWebWheat;
+         Exit;
+      end;
+
+      if (IMC >= 18.5) and (IMC <= 24.9) then
+      begin
+         lblResultado.Caption := Format('Seu IMC é de %f, você está com o peso normal', [IMC]);
+         lblResultado.Font.Color := clWebNavajoWhite;
+         Exit;
+      end;
+
+      if (IMC >= 25) and (IMC <= 29.9) then
+      begin
+         lblResultado.Caption := Format('Seu IMC é de %f, você está com sobrepeso', [IMC]);
+         lblResultado.Font.Color := clWebBurlywood;
+         Exit;
+      end;
+
+      if (IMC >= 30) and (IMC <= 34.9) then
+      begin
+         lblResultado.Caption := Format('Seu IMC é de %f, você está com Obesidade 1', [IMC]);
+         lblResultado.Font.Color := clYellow;
+         Exit;
+      end;
+
+      if (IMC >= 35) and (IMC <= 39.9) then
+      begin
+         lblResultado.Caption := Format('Seu IMC é de %f, você está com Obesidade 2', [IMC]);
+         lblResultado.Font.Color := clWebDarkOrange;
+         Exit;
+      end;
+
+      if IMC >= 40 then
+      begin
+         lblResultado.Caption := Format('Seu IMC é de %f, você está com Obesidade 3', [IMC]);
+         lblResultado.Font.Color := clRed;
+         Exit;
+      end;
+
+   except
+      raise;
+   end;
+end;
+
+procedure TfrmCalculadoraIMC.ExibirIdade;
+var
+  Pessoa: TPessoa;
+begin
+  Pessoa := nil;
+  try
+    Pessoa.AnoNascimento := StrToInt(edtAnoNascimento.Text);
+    lblIdade.Caption := IntToStr(Pessoa.Idade);
+
+  finally
+    if  Assigned(Pessoa) then
+        FreeAndNil(Pessoa);
+  end;
+
+end;
+
+end.

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2023/11/07 15:10:43.000.572,=C:\Users\Arthur Fonseca\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/11/07 15:11:16.000.626,C:\Users\Arthur Fonseca\Documents\Atividade 2\CalculadoraIMC.dfm=C:\Users\Arthur Fonseca\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2023/11/07 15:11:16.000.626,C:\Users\Arthur Fonseca\Documents\Atividade 2\CalculadoraIMC.pas=C:\Users\Arthur Fonseca\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2023/11/07 15:11:57.000.976,C:\Users\Arthur Fonseca\Documents\Atividade 2\Atividade2_CalculadoraIMC.dproj=C:\Users\Arthur Fonseca\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2023/11/07 15:25:14.000.616,=C:\Users\Arthur Fonseca\Documents\Atividade 2\Unit1.pas</Transaction>
+    <Transaction>2023/11/07 15:25:31.000.050,C:\Users\Arthur Fonseca\Documents\Atividade 2\Classes\Classes.pas=C:\Users\Arthur Fonseca\Documents\Atividade 2\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>

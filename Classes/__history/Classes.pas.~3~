@@ -1,0 +1,42 @@
+unit Classes;
+
+interface
+
+uses
+  DateUtils,
+  System.SysUtils;
+
+type
+    TPessoa = class
+  private
+      FNome: String;
+      FIdade: Integer;
+      FAltura: Double;
+      FPeso: Double;
+      FAnoNascimento: Integer;
+
+      function GetIdade: Integer;
+  public
+    property Nome: String read FNome write FNome;
+    property Idade: Integer read FIdade write FIdade;
+    property Altura: Double read FAltura write FAltura;
+    property Peso: Double read FPeso write FPeso;
+    property AnoNascimento: Integer read FAnoNascimento write FAnoNascimento;
+
+    constructor Create;
+  end;
+
+implementation
+
+constructor TPessoa.Create;
+begin
+  FNome := 'O nome não foi informado';
+  FIdade := 0;
+end;
+
+function TPessoa.GetIdade: Integer;
+begin
+  Result := YearOf(Date) - FAnoNascimento;
+end;
+
+end.

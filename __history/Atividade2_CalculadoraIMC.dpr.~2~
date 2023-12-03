@@ -1,0 +1,15 @@
+program Atividade2_CalculadoraIMC;
+
+uses
+  Vcl.Forms,
+  CalculadoraIMC in 'CalculadoraIMC.pas' {Form1},
+  Classes in 'Classes\Classes.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.

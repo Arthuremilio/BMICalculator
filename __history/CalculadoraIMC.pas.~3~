@@ -1,0 +1,38 @@
+unit CalculadoraIMC;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TfrmCalculadoraIMC = class(TForm)
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    lblIdade: TLabel;
+    btnCalcular: TButton;
+    GroupBox1: TGroupBox;
+    btnEnvelhecer: TButton;
+    btnEngordar: TButton;
+    btnEmagrecer: TButton;
+    btnCrescer: TButton;
+    edtPeso: TEdit;
+    edtAltura: TEdit;
+    edtAnoNascimento: TEdit;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCalculadoraIMC: TfrmCalculadoraIMC;
+
+implementation
+
+{$R *.dfm}
+
+end.
